@@ -1,2 +1,7 @@
 #!/bin/bash
+<<<<<<< HEAD
 cd ~
+=======
+cd /root
+
+>>>>>>> 73378044914d75c0f863723ffdeaf03fc89d5fe9
