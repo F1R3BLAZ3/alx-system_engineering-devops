@@ -1,2 +1,2 @@
 #!/bin/bash
-echo {a..z}{a..z} | sort -u | tr ' ' '\n'
+echo {a..z}{a..z} | sort -u | tr ' ' '\n' | uniq -u
