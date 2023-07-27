@@ -4,7 +4,7 @@
 
 for file in *; do
     if [ -f "$file" ] && [[ "$file" != .* ]] && [[ "$file" == *-* ]]; then
-        name=$(echo "$file" | cut -d'-' -f2-) # Extract the part after the first dash
+        name=$(echo "$file" | awk -F'-' '{print $2}') # Extract the part after the first dash
         echo "$name"
     fi
 done
