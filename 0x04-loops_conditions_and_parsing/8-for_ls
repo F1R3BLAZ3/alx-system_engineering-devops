@@ -5,7 +5,7 @@
 for file in *; do
     if [ -f "$file" ] && [[ "$file" != .* ]]; then
         name=$(echo "$file" | awk -F'-' 'NF>1{print $2}') # Extract the part after the first dash
-        if [ ! -z "$name" ]; then
+        if [ -n "$name" ]; then
             echo "$name"
         fi
     fi
