@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# This script starts the "4-to_infinity_and_beyond" script and then stops it using "kill".
+
+./4-to_infinity_and_beyond &  # Run the "4-to_infinity_and_beyond" script in the background
+PID=$!  # Store the PID of the background process
+
+# Wait for the process to finish (you can interrupt this script using Ctrl+C)
+wait $PID
+
+# Stop the process using kill
+kill $PID
