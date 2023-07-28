@@ -4,5 +4,8 @@
 ./4-to_infinity_and_beyond &  # Run the "4-to_infinity_and_beyond" script in the background
 PID=$!  # Store the PID of the background process
 
+# Sleep for a few seconds to allow the "4-to_infinity_and_beyond" script to run
+sleep 5
+
 # Stop the process using kill
 kill $PID
