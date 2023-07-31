@@ -1,11 +1,17 @@
 #!/usr/bin/env bash
-# This script starts the "4-to_infinity_and_beyond" script and then stops it using "kill".
+# This script stops the "4-to_infinity_and_beyond" process.
 
-./4-to_infinity_and_beyond &  # Run the "4-to_infinity_and_beyond" script in the background
-PID=$!  # Store the PID of the background process
+# Find the PID of the "4-to_infinity_and_beyond" process
+pid=$(pgrep -f '4-to_infinity_and_beyond')
 
-# Sleep for a few seconds to allow the "4-to_infinity_and_beyond" script to run
-sleep 5
-
-# Stop the process using kill
-kill $PID
+# Check if the process is running
+if [ -n "$pid" ]; then
+  # Terminate the process using SIGTERM (15)
+  kill "$pid"
+  sleep 1 # Wait for the process to terminate gracefully
+  # Check if the process is still running and forcefully terminate if necessary
+  if ps -p "$pid" > /dev/null; then
+    # Forcefully terminate the process using SIGKILL (9)
+    kill -9 "$pid"
+  fi
+fi
