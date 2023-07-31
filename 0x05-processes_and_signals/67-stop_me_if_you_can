@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-# This script stops the "7-highlander" process using "pkill".
+# This script kills the "7-highlander" process using its name.
 
 pkill -f "7-highlander"
