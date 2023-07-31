@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+# This script creates a PID file and displays "To infinity and beyond" indefinitely.
+# It responds differently to various signals and cleans up the PID file before exiting.
+
+pid_file="/var/run/myscript.pid"
+
+# Create a PID file containing its own PID
+echo $$ > "$pid_file"
+
+# Define a function to handle SIGTERM and SIGQUIT signals
+terminate_script() {
+  echo "I hate the kill command"
+  cleanup_and_exit
+}
+
+# Define a function to handle SIGINT signal
+interrupt_script() {
+  echo "Y U no love me?!"
+}
+
+# Function to perform cleanup and exit
+cleanup_and_exit() {
+  echo "Cleaning up and exiting..."
+  # Remove the PID file
+  rm -f "$pid_file"
+  # Terminate itself
+  exit 0
+}
+
+# Set up signal handlers
+trap 'terminate_script' SIGTERM SIGQUIT
+trap 'interrupt_script' SIGINT
+
+# Display "To infinity and beyond" indefinitely
+while true; do
+  echo "To infinity and beyond"
+  sleep 2
+done
