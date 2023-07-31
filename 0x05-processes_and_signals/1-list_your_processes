@@ -2,4 +2,4 @@
 # This script displays a list of currently running processes in a user-oriented format,
 # showing process hierarchy and all processes for all users.
 
-ps -e -o user,pid,%cpu,%mem,vsz,rss,tty,stat,start,time,command --forest
+ps -e -o user,pid,%cpu,%mem,vsz,rss,tty,stat,start,time:10,command --forest
