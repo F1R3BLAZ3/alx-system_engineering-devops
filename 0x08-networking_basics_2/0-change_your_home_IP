@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# Description: Configure localhost and facebook.com to specified IP addresses
+
+# Check if the script is executed with root privileges
+if [[ $EUID -ne 0 ]]; then
+  echo "This script must be run as root. Please use sudo or run as root user." >&2
+  exit 1
+fi
+
+# Backup the original /etc/hosts file
+cp /etc/hosts /etc/hosts.bak
+
+# Replace localhost entry
+sed -i 's/^127.0.0.1[[:space:]]\+localhost/127.0.0.2 localhost/' /etc/hosts
+
+# Add facebook.com entry
+echo "8.8.8.8 facebook.com" >> /etc/hosts
+
+echo "Configuration completed successfully."
+
+# Display the updated /etc/hosts file
+cat /etc/hosts

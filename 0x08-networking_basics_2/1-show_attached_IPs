@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Description: Display all active IPv4 IPs on the machine, including localhost
+
+# Use 'ip' command to get active IPv4 addresses
+ip -4 addr show | awk '/inet/ {gsub(/\/[0-9]+/, "", $2); print $2}'
