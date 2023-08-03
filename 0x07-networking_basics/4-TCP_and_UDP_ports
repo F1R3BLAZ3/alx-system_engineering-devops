@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 # Description: Display listening ports with PID and program name using ss command
-netstat -lp
+netstat -l --program
