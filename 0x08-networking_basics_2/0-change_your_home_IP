@@ -1,16 +1,7 @@
 #!/usr/bin/env bash
 # This script configures the hosts file to set localhost to 127.0.0.2 and facebook.com to 8.8.8.8.
 
-# Update the hosts file
-sudo sed -i 's/^127.0.0.1[[:space:]]localhost/127.0.0.2 localhost/' /etc/hosts
-sudo sed -i '/^# The following lines are desirable for IPv6 capable hosts$/a 8.8.8.8 facebook.com' /etc/hosts
-
-# Restart networking to apply changes
-sudo service networking restart
-
-# Check if localhost and facebook.com are now resolving to the new IP addresses
-echo "Checking localhost..."
-ping -c 3 localhost
-echo "Checking facebook.com..."
-ping -c 3 facebook.com
-
+cp /etc/hosts ~/hosts.new
+sed -i s/^127.*localhost$/127.0.0.2\ localhost/ ~/hosts.new
+echo "8.8.8.8 facebook.com" >> ~/hosts.new
+cat ~/hosts.new > /etc/hosts
