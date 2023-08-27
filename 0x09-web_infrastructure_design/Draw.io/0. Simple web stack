@@ -1,16 +1,16 @@
-<mxfile host="app.diagrams.net" modified="2023-08-27T12:15:55.924Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36" etag="w1mj-gxfGosG-0nTV4qw" version="21.2.1" type="github">
+<mxfile host="app.diagrams.net" modified="2023-08-27T17:16:16.874Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36" etag="6nrkS0hm7LW3laEJbd6x" version="21.6.9" type="github">
   <diagram name="Page-1" id="e3a06f82-3646-2815-327d-82caf3d4e204">
-    <mxGraphModel dx="1909" dy="1056" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1.5" pageWidth="1169" pageHeight="826" background="none" math="0" shadow="0">
+    <mxGraphModel dx="1615" dy="1023" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1.5" pageWidth="1169" pageHeight="826" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" style=";html=1;" />
         <mxCell id="1" style=";html=1;" parent="0" />
-        <mxCell id="YOw5IK-F-2sCBRpu-v0d-5" value="" style="whiteSpace=wrap;html=1;fillColor=#ffe6cc;fontSize=14;strokeColor=#d79b00;verticalAlign=top;" vertex="1" parent="1">
+        <mxCell id="YOw5IK-F-2sCBRpu-v0d-5" value="" style="whiteSpace=wrap;html=1;fillColor=#ffe6cc;fontSize=14;strokeColor=#d79b00;verticalAlign=top;" parent="1" vertex="1">
           <mxGeometry x="976" y="80" width="380" height="360" as="geometry" />
         </mxCell>
-        <mxCell id="YOw5IK-F-2sCBRpu-v0d-4" value="" style="whiteSpace=wrap;html=1;fillColor=#f8cecc;fontSize=14;strokeColor=#b85450;verticalAlign=top;" vertex="1" parent="1">
+        <mxCell id="YOw5IK-F-2sCBRpu-v0d-4" value="" style="whiteSpace=wrap;html=1;fillColor=#f8cecc;fontSize=14;strokeColor=#b85450;verticalAlign=top;" parent="1" vertex="1">
           <mxGeometry x="520" y="80" width="280" height="260" as="geometry" />
         </mxCell>
-        <mxCell id="YOw5IK-F-2sCBRpu-v0d-2" value="" style="whiteSpace=wrap;html=1;fillColor=#dae8fc;fontSize=14;strokeColor=#6c8ebf;verticalAlign=top;" vertex="1" parent="1">
+        <mxCell id="YOw5IK-F-2sCBRpu-v0d-2" value="" style="whiteSpace=wrap;html=1;fillColor=#dae8fc;fontSize=14;strokeColor=#6c8ebf;verticalAlign=top;" parent="1" vertex="1">
           <mxGeometry x="49.78" y="80" width="380" height="360" as="geometry" />
         </mxCell>
         <mxCell id="6a7d8f32e03d9370-60" value="" style="whiteSpace=wrap;html=1;fillColor=#d5e8d4;fontSize=14;strokeColor=none;verticalAlign=top;" parent="1" vertex="1">
@@ -94,7 +94,7 @@
         <mxCell id="QVlvdmstuyX5Vopia7-C-36" value="&lt;font style=&quot;font-size: 15px;&quot;&gt;Code Base&lt;/font&gt;" style="verticalLabelPosition=bottom;sketch=0;aspect=fixed;html=1;verticalAlign=top;strokeColor=none;align=center;outlineConnect=0;shape=mxgraph.citrix.document;" parent="1" vertex="1">
           <mxGeometry x="406.23" y="610" width="66.58" height="102" as="geometry" />
         </mxCell>
-        <mxCell id="QVlvdmstuyX5Vopia7-C-37" value="" style="endArrow=none;html=1;rounded=0;fillColor=#f8cecc;strokeColor=#b85450;strokeWidth=5;" parent="1" edge="1">
+        <mxCell id="QVlvdmstuyX5Vopia7-C-37" value="" style="endArrow=none;html=1;rounded=0;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=5;" parent="1" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="439.28000000000003" y="787" as="sourcePoint" />
             <mxPoint x="439.28000000000003" y="737" as="targetPoint" />
@@ -121,19 +121,7 @@
         <mxCell id="QVlvdmstuyX5Vopia7-C-54" value="&lt;font style=&quot;font-size: 15px;&quot;&gt;Server 1&lt;/font&gt;" style="verticalLabelPosition=bottom;sketch=0;aspect=fixed;html=1;verticalAlign=top;strokeColor=none;align=center;outlineConnect=0;shape=mxgraph.citrix.datacenter;" parent="1" vertex="1">
           <mxGeometry x="582.81" y="480" width="127.5" height="135" as="geometry" />
         </mxCell>
-        <mxCell id="YOw5IK-F-2sCBRpu-v0d-7" value="&lt;b&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;Static Content&lt;/font&gt;&lt;/b&gt;" style="endArrow=none;html=1;rounded=0;fillColor=#f8cecc;strokeColor=#b85450;strokeWidth=5;" edge="1" parent="1">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="373" y="516" as="sourcePoint" />
-            <mxPoint x="553" y="516" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="YOw5IK-F-2sCBRpu-v0d-8" value="&lt;font style=&quot;font-size: 15px;&quot;&gt;&lt;b&gt;Dynamic Content&lt;/b&gt;&lt;/font&gt;" style="endArrow=none;html=1;rounded=0;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=5;" edge="1" parent="1">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="373" y="550" as="sourcePoint" />
-            <mxPoint x="553" y="550" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="YOw5IK-F-2sCBRpu-v0d-9" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;4. The server the replies with the information requested from the website &quot;www.foobar.com&quot;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+        <mxCell id="YOw5IK-F-2sCBRpu-v0d-9" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;4. The server the replies with the information requested from the website &quot;www.foobar.com&quot;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="720.31" y="480" width="239.69" height="120" as="geometry" />
         </mxCell>
       </root>
