@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-08-27T17:16:16.874Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36" etag="6nrkS0hm7LW3laEJbd6x" version="21.6.9" type="github">
+<mxfile host="app.diagrams.net" modified="2023-08-27T19:03:16.080Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36" etag="yPxuV3jX-jMg4qCKJfnC" version="21.6.9" type="github">
   <diagram name="Page-1" id="e3a06f82-3646-2815-327d-82caf3d4e204">
     <mxGraphModel dx="1615" dy="1023" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1.5" pageWidth="1169" pageHeight="826" background="none" math="0" shadow="0">
       <root>
@@ -46,22 +46,22 @@
         <mxCell id="QVlvdmstuyX5Vopia7-C-11" value="&lt;font style=&quot;font-size: 15px;&quot;&gt;Router&lt;/font&gt;" style="verticalLabelPosition=bottom;sketch=0;aspect=fixed;html=1;verticalAlign=top;strokeColor=none;align=center;outlineConnect=0;shape=mxgraph.citrix.router;" parent="1" vertex="1">
           <mxGeometry x="590" y="171" width="135.62" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="QVlvdmstuyX5Vopia7-C-12" value="&lt;font style=&quot;font-size: 15px;&quot;&gt;HTTP/S Response&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
-          <mxGeometry x="706" y="396" width="170.5" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="QVlvdmstuyX5Vopia7-C-13" value="&lt;font style=&quot;font-size: 15px;&quot;&gt;HTTP/S Request&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
-          <mxGeometry x="429.78" y="396" width="170.5" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="QVlvdmstuyX5Vopia7-C-15" value="" style="endArrow=classic;html=1;rounded=0;" parent="1" edge="1">
+        <mxCell id="QVlvdmstuyX5Vopia7-C-15" value="&lt;font style=&quot;font-size: 15px;&quot;&gt;HTTP/S Request&lt;/font&gt;" style="endArrow=classic;html=1;rounded=0;" parent="1" edge="1" target="QVlvdmstuyX5Vopia7-C-54">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="620" y="266" as="sourcePoint" />
-            <mxPoint x="620" y="476" as="targetPoint" />
+            <mxPoint x="620" y="290" as="sourcePoint" />
+            <mxPoint x="590" y="476" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="560" y="380" />
+            </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="QVlvdmstuyX5Vopia7-C-16" value="" style="endArrow=classic;html=1;rounded=0;" parent="1" edge="1">
+        <mxCell id="QVlvdmstuyX5Vopia7-C-16" value="&lt;font style=&quot;font-size: 15px;&quot;&gt;HTTP/S Response&lt;/font&gt;" style="endArrow=classic;html=1;rounded=0;" parent="1" edge="1" source="QVlvdmstuyX5Vopia7-C-54">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="695" y="470" as="sourcePoint" />
-            <mxPoint x="695" y="269" as="targetPoint" />
+            <mxPoint x="718.1907239819005" y="487.93" as="sourcePoint" />
+            <mxPoint x="700" y="290" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="740" y="380" />
+            </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="QVlvdmstuyX5Vopia7-C-17" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;2. The router then forwards the IP request to the DNS Server&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
