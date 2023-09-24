@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Define the server address with the username and IP/domain
+server_address="ubuntu@your_server_ip_or_domain"
+
+# Define the path to the private key file
+private_key_path="~/.ssh/school"
+
+# Use SSH to connect to the server with the specified private key
+ssh -i $private_key_path $server_address
