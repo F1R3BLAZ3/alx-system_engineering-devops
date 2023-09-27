@@ -6,16 +6,13 @@ sudo apt-get update
 sudo apt-get install -y nginx
 
 # Create a custom HTML file with "Hello World!"
-echo '<html><body>Hello World!</body></html>' | sudo tee /var/www/html/index.html
+echo 'Hello World!' | sudo tee /var/www/html/index.html
 
 # Configure Nginx to listen on port 80
 sudo sed -i 's/listen 80 default_server;/listen 80;/g' /etc/nginx/sites-available/default
 
 # Restart Nginx (without using systemctl)
 sudo service nginx restart
-
-# Display a message indicating the setup is complete
-echo "Nginx installed and configured. It's now listening on port 80."
 
 # Exit the script
 exit 0
