@@ -8,25 +8,15 @@ sudo apt-get install -y nginx
 # Create a custom HTML file with the redirection message
 echo '<html><head><meta http-equiv="refresh" content="0;url=/new_location"></head></html>' | sudo tee /var/www/html/redirect_me.html >/dev/null
 
-# Create a new Nginx server block configuration file for the redirection
 echo "server {
     listen 80;
-    server_name _;
-
+    listen [::]:80 default_server;
+    root   /etc/nginx/html;
+    index  index.html;
     location /redirect_me {
-        return 301 http://\$host/new_location;
+        return 301 https://twitter.com/Emmanue17280546;
     }
-
-    location /new_location {
-        alias /var/www/html;
-    }
-}" | sudo tee /etc/nginx/sites-available/redirect_me >/dev/null
-
-# Enable the new configuration by creating a symbolic link
-sudo ln -s /etc/nginx/sites-available/redirect_me /etc/nginx/sites-enabled/
-
-# Remove the default configuration if it exists
-sudo rm /etc/nginx/sites-enabled/default
+}" > /etc/nginx/sites-available/default
 
 # Restart Nginx (without using systemctl)
 sudo service nginx restart

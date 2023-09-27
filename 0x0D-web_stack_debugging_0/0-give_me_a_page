@@ -1,4 +1,25 @@
 #!/usr/bin/env bash
-# Run Apache on the holbertonschool/265-0 Docker container.
-echo "ServerName localhost" >> /etc/apache2.conf
+# This script sets up Apache to serve a "Hello Holberton" page.
+
+# Install Apache (if not already installed)
+apt-get update
+apt-get install -y apache2
+
+# Create a simple HTML file with "Hello Holberton" content
+echo "Hello Holberton" > /var/www/html/index.html
+
+# Start Apache
 service apache2 start
+
+# Make sure Apache is running
+if ! pgrep apache2 > /dev/null; then
+    echo "Apache failed to start."
+    exit 1
+fi
+
+# Display the container's IP address
+container_ip=$(hostname -I)
+echo "Apache is running. Access the page at http://$container_ip/"
+
+# Keep the script running to keep the container alive
+tail -f /dev/null
