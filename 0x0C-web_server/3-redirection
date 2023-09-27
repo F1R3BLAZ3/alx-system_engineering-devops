@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+# This script configures Nginx to redirect /redirect_me to another page with a "301 Moved Permanently" status code.
+
+# Update package list and install Nginx
+sudo apt-get update
+sudo apt-get install -y nginx
+
+# Create a custom HTML file with the redirection message
+echo '<html><head><meta http-equiv="refresh" content="0;url=/new_location"></head></html>' | sudo tee /var/www/html/redirect_me.html >/dev/null
+
+# Create a new Nginx server block configuration file for the redirection
+echo "server {
+    listen 80;
+    server_name _;
+
+    location /redirect_me {
+        return 301 http://\$host/new_location;
+    }
+
+    location /new_location {
+        alias /var/www/html;
+    }
+}" | sudo tee /etc/nginx/sites-available/redirect_me >/dev/null
+
+# Enable the new configuration by creating a symbolic link
+sudo ln -s /etc/nginx/sites-available/redirect_me /etc/nginx/sites-enabled/
+
+# Remove the default configuration if it exists
+sudo rm /etc/nginx/sites-enabled/default
+
+# Restart Nginx (without using systemctl)
+sudo service nginx restart
+
+# Exit the script
+exit 0
