@@ -4,9 +4,11 @@
 # Update and upgrade packages
 sudo apt-get update
 sudo apt-get upgrade -y
+sudo apt-get install --no-install-recommends software-properties-common
+sudo add-apt-repository ppa:vbernat/haproxy-2.8
 
 # Install HAProxy
-sudo apt-get install haproxy -y
+sudo apt-get install haproxy=2.8.\*
 
 # Configure HAProxy
 sudo bash -c 'cat <<EOL >> /etc/haproxy/haproxy.cfg
@@ -33,8 +35,8 @@ frontend http_front
 
 backend http_back
     balance roundrobin
-    server web-01 [STUDENT_ID]-web-01:80 check
-    server web-02 [STUDENT_ID]-web-02:80 check
+    server web1 100.26.167.18:80 check
+    server web2 54.175.189.193:80 check
 EOL'
 
 # Enable HAProxy to be managed via an init script
