@@ -15,8 +15,8 @@ echo "Hello World!" | sudo tee /var/www/html/index.html
 echo "Ceci n'est pas une page" | sudo tee /usr/share/nginx/html/404.html
 
 # Configure Nginx default site to include custom header
-custom_header="add_header X-Served-By \$hostname"
-sudo sed -i "s|server_name\ _|server_name _;\n\t$custom_header;|" /etc/nginx/sites-available/default
+custom_header="add_header X-Served-By \$hostname;"
+sudo sed -i "/server_name _;/a \\\t$custom_header" /etc/nginx/sites-available/default
 
 # Restart Nginx to apply changes
 sudo service nginx restart
