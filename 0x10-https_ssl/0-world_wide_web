@@ -1,53 +1,21 @@
 #!/usr/bin/env bash
-# This script displays information about subdomains of a domain.
+# display information about subdomains.
 
-# Function to query DNS and extract relevant information
-get_dns_info() {
-    local domain="$1"
-    local subdomain="$2"
-
-    # Query DNS using dig and filter the answer section
-    local dns_output
-    if [ -z "$subdomain" ]; then
-        dns_output=$(dig +short "$subdomain.$domain")
-    else
-        dns_output=$(dig +short "$domain")
-    fi
-
-    # Extract the record type and destination
-    local record_type
-    local destination
-
-    if [ -n "$dns_output" ]; then
-        record_type=$(echo "$dns_output" | awk '{print $4}')
-        destination=$(echo "$dns_output" | awk '{print $1}')
-        echo "The subdomain $subdomain is a $record_type record and points to $destination"
-    else
-        echo "No information found for subdomain $subdomain"
-    fi
-}
-
-# Main script logic
-main() {
-    local domain="$1"
-    local subdomain="$2"
-
-    # List of subdomains to audit
-    subdomains=("www" "lb-01" "web-01" "web-02")
-
-    if [ -n "$subdomain" ]; then
-        get_dns_info "$domain" "$subdomain"
-    else
-        for sub in "${subdomains[@]}"; do
-            get_dns_info "$domain" "$sub"
-        done
-    fi
-}
-
-# Check for mandatory arguments
-if [ $# -lt 1 ]; then
-    echo "Usage: $0 <domain> [subdomain]"
-    exit 1
+if [ $# -eq 1 ]; then
+    sub_domains='www lb-01 web-01 web-02'
+else
+    sub_domains="$2"
 fi
 
-main "$1" "$2"
+for sub in $sub_domains; do
+    echo -n "The subdomain $sub"
+    dns_output=$(dig +short -t A "$sub.$1")
+
+    if [ -n "$dns_output" ]; then
+        record_type="A"
+        destination=$(echo "$dns_output" | awk '{print $1}')
+        echo " is a $record_type record and points to $destination"
+    else
+        echo " DNS query returned empty or an error."
+    fi
+done
