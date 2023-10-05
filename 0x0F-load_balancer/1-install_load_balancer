@@ -5,42 +5,22 @@
 sudo apt-get update
 sudo apt-get upgrade -y
 sudo apt-get install --no-install-recommends software-properties-common
-sudo add-apt-repository ppa:vbernat/haproxy-2.8
+sudo add-apt-repository ppa:vbernat/haproxy-2.8 -y
+sudo apt-get update
 
 # Install HAProxy
-sudo apt-get install haproxy=2.8.\*
+sudo apt-get install haproxy=2.8.\* -y
 
 # Configure HAProxy
-sudo bash -c 'cat <<EOL >> /etc/haproxy/haproxy.cfg
-global
-    log /dev/log    local0
-    log /dev/log    local1 notice
-    user haproxy
-    group haproxy
-    daemon
+echo "frontend web-front
+        bind *:80
+        default_backend web-backend
 
-defaults
-    log     global
-    mode    http
-    option  httplog
-    option  dontlognull
-    timeout connect 5000
-    timeout client  50000
-    timeout server  50000
-
-frontend http_front
-    bind *:80
-    stats uri /haproxy?stats
-    default_backend http_back
-
-backend http_back
-    balance roundrobin
-    server web1 100.26.167.18:80 check
-    server web2 54.175.189.193:80 check
-EOL'
-
-# Enable HAProxy to be managed via an init script
-sudo sed -i 's/ENABLED=0/ENABLED=1/' /etc/default/haproxy
+backend web-backend
+        balance roundrobin
+        server web1 35.227.47.184:80 check
+        server web2 35.190.188.208:80 check
+" | sudo tee -a /etc/haproxy/haproxy.cfg
 
 # Restart HAProxy
 sudo service haproxy restart
