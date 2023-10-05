@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# This script installs and configures Nginx to listen on port 80.
+
+# Install Nginx
+apt-get update
+apt-get install nginx -y
+
+# Configure Nginx to listen on port 80
+sed -i 's/listen 80;/listen 80;/g' /etc/nginx/sites-available/default
+
+# Test Nginx configuration
+if nginx -t; then
+    # Reload Nginx if configuration is valid
+    systemctl reload nginx
+    echo "Nginx configuration updated and reloaded successfully."
+else
+    echo "Nginx configuration test failed. Please check the configuration."
+fi
