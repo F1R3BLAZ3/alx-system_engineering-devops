@@ -8,18 +8,35 @@ sudo apt-get install -y nginx
 # Create a custom HTML file with the redirection message
 echo '<html><head><meta http-equiv="refresh" content="0;url=/new_location"></head></html>' | sudo tee /var/www/html/redirect_me.html >/dev/null
 
+# Create an Nginx configuration file for the redirection
 echo "server {
     listen 80;
-    listen [::]:80 default_server;
-    root   /etc/nginx/html;
+    server_name _;  # Listen on all server names (replace with your actual domain if needed)
+    root   /var/www/html;  # Use the web server's document root
     index  index.html;
+
     location /redirect_me {
         return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
     }
-}" > /etc/nginx/sites-available/default
 
-# Restart Nginx (without using systemctl)
-sudo service nginx restart
+    # Add any additional configuration here if needed
+}" | sudo tee /etc/nginx/sites-available/redirect_me >/dev/null
+
+# Check if the symbolic link already exists
+if [ ! -f /etc/nginx/sites-enabled/redirect_me ]; then
+    # Create a symbolic link to enable the configuration
+    sudo ln -s /etc/nginx/sites-available/redirect_me /etc/nginx/sites-enabled/
+fi
+
+# Test the Nginx configuration
+sudo nginx -t
+
+# Restart Nginx if the configuration is valid
+if [ $? -eq 0 ]; then
+    sudo service nginx restart
+else
+    echo "Nginx configuration test failed. Please check the configuration manually."
+fi
 
 # Exit the script
 exit 0
