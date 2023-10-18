@@ -2,37 +2,22 @@
 # Generates a MySQL dump with all databases
 # and creates a compressed archive out of it.
 
-# Check if the password argument is provided
-if [ $# -ne 1 ]; then
-    echo "Usage: $0 <mysql_password>"
-    exit 1
+if [ "$1" ]; then
+    touch .mylogin.cnf
+    printf "[client]\nuser = %s\npassword = %s" "root" "$1" >> .mylogin.cnf
+    chmod 600 .mylogin.cnf
+
+    if mysqldump --defaults-extra-file=.mylogin.cnf --all-databases > backup.sql; then
+        if tar -czvf "$(date '+%d-%m-%Y').tar.gz" backup.sql; then
+            echo "Backup completed successfully."
+        else
+            echo "Failed to create the tar.gz archive."
+        fi
+    else
+        echo "MySQL dump failed. Check your password or MySQL configuration."
+    fi
+
+    # Clean up the temporary .mylogin.cnf and backup.sql files
+    rm -f .mylogin.cnf
+    rm -f backup.sql
 fi
-
-# Set the MySQL root password
-MYSQL_PASSWORD="$1"
-
-# Get the current date in the specified format (day-month-year)
-CURRENT_DATE=$(date +"%d-%m-%Y")
-
-# Create a temporary directory to store the backup files
-TMP_DIR="/tmp/mysql_backup_$CURRENT_DATE"
-mkdir -p "$TMP_DIR"
-
-# Perform the MySQL dump of all databases
-if ! mysqldump -u root -p"$MYSQL_PASSWORD" --all-databases > "$TMP_DIR/backup.sql"; then
-    echo "MySQL dump failed. Check your password or MySQL configuration."
-    rm -r "$TMP_DIR"
-    exit 1
-fi
-
-# Compress the MySQL dump to a tar.gz archive
-if ! tar -czf "$CURRENT_DATE.tar.gz" -C "$TMP_DIR" .; then
-    echo "Failed to create the tar.gz archive."
-    rm -r "$TMP_DIR"
-    exit 1
-fi
-
-# Clean up the temporary directory
-rm -r "$TMP_DIR"
-
-echo "Backup completed. The MySQL dump is saved as backup.sql and compressed as $CURRENT_DATE.tar.gz"
