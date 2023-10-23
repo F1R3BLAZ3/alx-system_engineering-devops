@@ -77,7 +77,7 @@ def export_to_csv(employee_id, employee_name, todo_data):
                              "TASK_TITLE"])
 
         for task in todo_data:
-            csv_writer.writerow((str(employee_id), employee_name,
+            csv_writer.writerow((employee_id, employee_name,
                                  str(task["completed"]), task["title"]))
 
 
