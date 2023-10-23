@@ -1,10 +1,23 @@
 #!/usr/bin/python3
+"""
+Fetch and display an employee's progress on their TODO list from an API.
+"""
 
 import requests
 import sys
 
 
 def get_employee_todo_progress(employee_id):
+    """
+    Fetch and display an employee's progress on their TODO list from an API.
+
+    Args:
+        employee_id (int): The ID of the employee whose progress
+        should be checked.
+
+    Returns:
+        None
+    """
     base_url = "https://jsonplaceholder.typicode.com"
     user_url = f"{base_url}/users/{employee_id}"
     todo_url = f"{base_url}/todos?userId={employee_id}"
@@ -23,8 +36,9 @@ def get_employee_todo_progress(employee_id):
     done_tasks = sum(1 for task in todo_list if task.get("completed"))
 
     # Display progress
-    print(f"Employee {employee_name} is done with tasks({done_tasks}/"
-          "{total_tasks}):")
+    print(f"Employee {employee_name} is done with tasks "
+          f"({done_tasks}/{total_tasks}):")
+
     for task in todo_list:
         if task.get("completed"):
             print(f"\t {task.get('title')}")
