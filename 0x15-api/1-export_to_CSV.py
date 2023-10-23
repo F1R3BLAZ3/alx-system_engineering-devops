@@ -68,17 +68,18 @@ def export_to_csv(employee_id, employee_name, todo_data):
     file_name = f"{employee_id}.csv"
     file_path = os.path.join(os.getcwd(), file_name)
 
-    with open(file_path, mode='w', newline='', encoding='utf-8') as file:
+    with open(file_path, mode='w', newline='') as file:
         csv_writer = csv.writer(file, delimiter=',', quotechar='"',
-                                quoting=csv.QUOTE_MINIMAL)
+                                quoting=csv.QUOTE_ALL)
 
         # Write the header row
         csv_writer.writerow(["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS",
                              "TASK_TITLE"])
 
         for task in todo_data:
-            csv_writer.writerow((employee_id, employee_name,
-                                 str(task["completed"]), task["title"]))
+            csv_writer.writerow([employee_id, employee_name,
+                                 str(task["completed"]),
+                                 task["title"]])
 
 
 if __name__ == "__main__":
