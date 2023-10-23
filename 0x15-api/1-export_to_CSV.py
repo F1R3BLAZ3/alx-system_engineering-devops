@@ -6,6 +6,7 @@ exports it to a CSV file.
 """
 
 import csv
+import os
 import requests
 import sys
 
@@ -21,6 +22,7 @@ def get_employee_todo_progress(employee_id):
     Returns:
         None
     """
+
     # Fetch employee name
     user_response = requests.get(
         f"https://jsonplaceholder.typicode.com/users/{employee_id}"
@@ -64,8 +66,9 @@ def export_to_csv(employee_id, employee_name, todo_data):
         None
     """
     file_name = f"{employee_id}.csv"
+    file_path = os.path.join(os.getcwd(), file_name)
 
-    with open(file_name, mode='w', newline='') as file:
+    with open(file_path, mode='w', newline='') as file:
         csv_writer = csv.writer(file, delimiter=',', quotechar='"',
                                 quoting=csv.QUOTE_ALL)
 
@@ -79,7 +82,7 @@ def export_to_csv(employee_id, employee_name, todo_data):
                                  task["title"]])
 
 
-if __name__ == "__main":
+if __name__ == "__main__":
     if len(sys.argv) != 2:
         print("Usage: python3 gather_data_from_an_API.py <employee_id>")
         sys.exit(1)
