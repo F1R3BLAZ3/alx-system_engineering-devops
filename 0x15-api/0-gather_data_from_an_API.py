@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """
-Fetch and display an employee's progress on their TODO list from an API.
+Python script that, using a REST API, for a given employee ID,
+returns information about his/her TODO list progress.
 """
 
 import requests
@@ -18,33 +19,38 @@ def get_employee_todo_progress(employee_id):
     Returns:
         None
     """
-    base_url = 'https://jsonplaceholder.typicode.com'
-    user_url = f'{base_url}/users/{employee_id}'
-    todo_url = f'{user_url}/todos'
+    # Fetch employee name
+    user_response = requests.get(
+        f"https://jsonplaceholder.typicode.com/users/{employee_id}"
+    )
+    user_data = user_response.json()
+    employee_name = user_data.get("name")
 
-    # Fetch user data
-    user_data = requests.get(user_url).json()
-    employee_name = user_data.get('name')
+    # Fetch employee's TODO list
+    todo_response = requests.get(
+        f"https://jsonplaceholder.typicode.com/todos?userId={employee_id}"
+    )
+    todo_data = todo_response.json()
 
-    # Fetch TODO list for the user
-    todo_list = requests.get(todo_url).json()
+    # Calculate completed and total tasks
+    completed_tasks = [task for task in todo_data if task["completed"]]
+    total_tasks = len(todo_data)
+    completed_task_count = len(completed_tasks)
 
-    # Calculate progress
-    total_tasks = len(todo_list)
-    done_tasks = sum(1 for task in todo_list if not task.get('completed'))
+    # Print employee TODO list progress
+    print(
+        f"Employee {employee_name} is done with tasks "
+        f"({completed_task_count}/{total_tasks}):"
+    )
 
-    # Display progress in the expected format
-    print(f"To Do Count: {done_tasks}/{total_tasks}")
+    for task in completed_tasks:
+        print(f"\t {task['title']}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print('Usage: python3 gather_data_from_an_API.py <employee_id>')
+        print("Usage: python3 gather_data_from_an_API.py <employee_id>")
         sys.exit(1)
 
-    try:
-        employee_id = int(sys.argv[1])
-    except ValueError:
-        sys.exit(1)
-
+    employee_id = sys.argv[1]
     get_employee_todo_progress(employee_id)
