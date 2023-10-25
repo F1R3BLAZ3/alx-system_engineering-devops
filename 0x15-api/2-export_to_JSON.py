@@ -67,7 +67,9 @@ def export_to_json(employee_id, completed_tasks, employee_name):
     file_name = f"{employee_id}.json"
 
     with open(file_name, 'w') as json_file:
-        json.dump(data, json_file, indent=4)
+        json.dump(data, json_file, separators=(',', ':'))
+
+
 
 
 if __name__ == "__main__":
