@@ -37,18 +37,6 @@ def get_employee_todo_progress(employee_id):
     )
     todo_data = todo_response.json()
 
-    # Calculate completed and total tasks
-    completed_tasks = [task for task in todo_data if task["completed"]]
-    total_tasks = len(todo_data)
-    completed_task_cnt = len(completed_tasks)
-
-    # Print employee TODO list progress
-    print("Employee {} (Username: {}) is done with tasks ({}/{})".format(
-        employee_name, employee_username, completed_task_cnt, total_tasks))
-
-    for task in completed_tasks:
-        print(f"\t {task['title']}")
-
     # Export data to CSV
     export_to_csv(employee_id, employee_username, todo_data)
 
@@ -69,16 +57,15 @@ def export_to_csv(employee_id, employee_username, todo_data):
     file_path = os.path.join(os.getcwd(), file_name)
 
     with open(file_path, mode='w', newline='') as file:
-        csv_writer = csv.writer(file, delimiter=',', quotechar='"',
-                                quoting=csv.QUOTE_ALL)
-
-        # Write the header row
-        csv_writer.writerow(["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS",
-                             "TASK_TITLE"])
+        csv_writer = csv.writer(file, delimiter=',',
+                                quotechar='"', quoting=csv.QUOTE_ALL)
 
         for task in todo_data:
-            csv_writer.writerow([employee_id, employee_username,
-                                 str(task["completed"]), task["title"]])
+            csv_writer.writerow(
+                [employee_id,
+                 employee_username,
+                 str(task["completed"]),
+                 task["title"]])
 
 
 if __name__ == "__main__":
