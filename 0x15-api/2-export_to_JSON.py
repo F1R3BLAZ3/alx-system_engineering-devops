@@ -70,8 +70,6 @@ def export_to_json(employee_id, completed_tasks, employee_name):
         json.dump(data, json_file, separators=(',', ':'))
 
 
-
-
 if __name__ == "__main__":
     if len(sys.argv) != 2:
         print("Usage: python3 2-export_to_JSON.py <employee_id>")
