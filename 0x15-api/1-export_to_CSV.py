@@ -23,12 +23,13 @@ def get_employee_todo_progress(employee_id):
         None
     """
 
-    # Fetch employee name
+    # Fetch employee name and username
     user_response = requests.get(
         f"https://jsonplaceholder.typicode.com/users/{employee_id}"
     )
     user_data = user_response.json()
-    employee_name = user_data.get("username")
+    employee_name = user_data.get("name")  # User's name
+    employee_username = user_data.get("username")  # User's username
 
     # Fetch employee's TODO list
     todo_response = requests.get(
@@ -42,24 +43,23 @@ def get_employee_todo_progress(employee_id):
     completed_task_cnt = len(completed_tasks)
 
     # Print employee TODO list progress
-    print("Employee {} is done with tasks ({}/{}):".format(employee_name,
-                                                           completed_task_cnt,
-                                                           total_tasks))
+    print("Employee {} (Username: {}) is done with tasks ({}/{})".format(
+        employee_name, employee_username, completed_task_cnt, total_tasks))
 
     for task in completed_tasks:
         print(f"\t {task['title']}")
 
     # Export data to CSV
-    export_to_csv(employee_id, employee_name, todo_data)
+    export_to_csv(employee_id, employee_username, todo_data)
 
 
-def export_to_csv(employee_id, employee_name, todo_data):
+def export_to_csv(employee_id, employee_username, todo_data):
     """
     Export employee's TODO list data to a CSV file.
 
     Args:
         employee_id (int): The ID of the employee.
-        employee_name (str): The name of the employee.
+        employee_username (str): The username of the employee.
         todo_data (list): List of employee's TODO tasks.
 
     Returns:
@@ -77,14 +77,13 @@ def export_to_csv(employee_id, employee_name, todo_data):
                              "TASK_TITLE"])
 
         for task in todo_data:
-            csv_writer.writerow([employee_id, employee_name,
-                                 str(task["completed"]),
-                                 task["title"]])
+            csv_writer.writerow([employee_id, employee_username,
+                                 str(task["completed"]), task["title"]])
 
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print("Usage: python3 gather_data_from_an_API.py <employee_id>")
+        print("Usage: python3 1-export_to_CSV.py <employee_id>")
         sys.exit(1)
 
     employee_id = sys.argv[1]
