@@ -42,11 +42,11 @@ def recurse(subreddit, hot_list=[], after=None):
             after = data['data']['after']
             if after:
                 return recurse(subreddit, hot_list, after)
-            else:
-                return hot_list
         except (KeyError, ValueError):
             # Invalid data or format
             return None
     else:
         # Invalid subreddit or other error
         return None
+
+    return hot_list
