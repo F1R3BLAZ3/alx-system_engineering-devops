@@ -2,7 +2,8 @@
 """
 Queries the Reddit API and prints the titles of the first 10 hot posts
 for a given subreddit.
-If the subreddit is invalid or there is an issue with the request, it prints None.
+If the subreddit is invalid or there is an issue with the request,
+it prints None.
 
 Requirements:
 - Uses the Requests module for sending HTTP requests to the Reddit API
