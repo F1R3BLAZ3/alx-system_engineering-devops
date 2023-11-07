@@ -21,10 +21,10 @@ def recurse(subreddit, hot_list=[], after=None):
     :param after: The 'after' parameter for pagination (default is None).
     :return: A list of article titles or None if the subreddit is invalid.
     """
-    url = f"https://www.reddit.com/r/{subreddit}/hot.json?limit=10"
+    url = f"https://www.reddit.com/r/{subreddit}/hot.json"
 
     if after:
-        url += f"&after={after}"
+        url += f"?after={after}"
 
     # Set a custom User-Agent to avoid Too Many Requests error
     headers = {'User-Agent': 'MyRedditBot/1.0'}
